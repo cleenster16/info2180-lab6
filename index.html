@@ -1,61 +1,43 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Search</title>
-    
-        <script>
-            window.onload = () => {
-                const searchbutton = document.getElementById("searchbutton");
-                 
-        
-                //searchbutton.onclick = getResult;
-                searchbutton.addEventListener("click", function(){
-                    getResult(document.getElementById('searchinput').value);
-                    console.log(document.getElementById('searchinput').value);
-                });
-        
-                function getResult(str){
-                    
-                    let request = new XMLHttpRequest();
-                    request.onreadystatechange = function(){
-                        if (request.readyState == XMLHttpRequest.DONE){
-                            if (request.status == 200){
-                                //console.log(this.responseText);
-                                displayDefinition(this.responseText);
-                            }else{
-                                alert('There was a problem with the request');
-                            }
-                        }
-                    };
-                    request.open('GET', 'request.php?q=' + str, true);
-                    request.send();
-                    
-                    
-                }
-        
-                function displayDefinition(response){
-                    document.getElementById("result").innerHTML = response;
-                }
-            }
-        </script>
-
+        <title>Web Dictionary</title>
+        <link rel="stylesheet" href='style.css' type='text/css'/>
+        <script src="main.js"></script>
     </head>
     
 
-    <body>
-        <div class="section" id="search">
-            <input type="text" name="searchinput" id="searchinput">
-            <button id="searchbutton">Search</button>
-        </div>
+    <div class="grid">
         
-        <div class="section" id="resultsection">
-            <h2>
-                Result
-            </h2>
-            <div id="result">
-                
+        <header class="header">
+            <div class="title">
+                <h1>Web Dictionary</h1>
             </div>
-        </div> 
-    </body>
+        </header>
+        
+        <body>
+            <div class="section" id="searchsection">
+                
+                <input type="text" name="searchinput" id="getOne">
+                
+                <div class="section" id="searchcontrols">
+                    <button id="searchbutton">Search</button>
+                    <button id="getAll">Get All Definitions</button>
+                </div>
+            </div>
+            
+            <div class="section" id="resultsection">
+                <div id="resulttitle">
+                    <h2>
+                        Result
+                    </h2>
+                </div>
+                
+                <div id="result">
+                </div>
+            </div> 
+        </body>
+        
+    </div>
 
 </html>
